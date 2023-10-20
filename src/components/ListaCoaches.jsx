@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
 
 export default function ListaCoaches() {
@@ -14,6 +15,15 @@ export default function ListaCoaches() {
         axios.get("http://127.0.0.1:8000/api/getCoaches").then((response) =>{
             console.log(response.data.detalle)
             setCoaches(response.data.detalle) //[]
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
+    const desactivarCoach = (id) => {
+        console.log(id)
+        axios.put(`http://127.0.0.1:8000/api/deshabilitarCoach/${id}`).then((response) => {
+            console.log(response)
         }).catch((error) => {
             console.log(error)
         })
@@ -37,7 +47,7 @@ export default function ListaCoaches() {
                     <th>Telefono</th>
                     <th>Correo</th>
                     <th>Materia</th>
-                    <th>Acciones</th>
+                    <th colSpan='3'>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +60,16 @@ export default function ListaCoaches() {
                                     <td>{coach.apellido}</td>
                                     <td>{coach.telefono}</td>
                                     <td>{coach.correo}</td>
-                                    <td>{coach.id_materia}</td>
+                                    <td>{coach.materia}</td>
+                                    <td>
+                                        <button>Asignar Bootcamp</button>
+                                    </td>
+                                    <td>
+                                        <Link className='btn btn-warning' to={`/actualizar/${coach.id}`}>Editar</Link>
+                                    </td>
+                                    <td>
+                                        <button className='btn btn-danger' onClick={() => desactivarCoach(coach.id)}>Desactivar</button>
+                                    </td>
                                 </tr>
                             )
                             
