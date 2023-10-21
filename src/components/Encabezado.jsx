@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ListaCoaches from './ListaCoaches'
 import RegistrarCoach from './RegistrarCoach'
 import ActualizarCoach from './ActualizarCoach'
+import AsignacionBootcamps from './AsignacionBootcamps'
+import ListaBootcampsCoach from './ListaBootcampsCoach'
 
 export default function Encabezado() {
     return (
@@ -21,6 +23,9 @@ export default function Encabezado() {
                     <li className="nav-item">
                         <Link to='/registrar' className="nav-link active">Registrar Coach</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to='/bootcamps' className="nav-link active">Bootcamps por Coach</Link>
+                    </li>
                 </ul>
                 </div>
             </div>
@@ -30,6 +35,8 @@ export default function Encabezado() {
                 <Route path='/' element={<ListaCoaches />}/>
                 <Route path='/registrar' element={<RegistrarCoach />} />
                 <Route path='/actualizar/:id_coach' element={<ActualizarCoach />} />
+                <Route path='/asignacionBootcamps/:id_coach/:coach' element={<AsignacionBootcamps />} />
+                <Route path='/bootcamps' element={<ListaBootcampsCoach />} />
             </Routes>
         </BrowserRouter>
     )

@@ -62,7 +62,7 @@ export default function ListaCoaches() {
                                     <td>{coach.correo}</td>
                                     <td>{coach.materia}</td>
                                     <td>
-                                        <button>Asignar Bootcamp</button>
+                                        <Link className='btn btn-info' to={`/asignacionBootcamps/${coach.id}/${coach.nombre}`}>Asignar Bootcamps</Link>
                                     </td>
                                     <td>
                                         <Link className='btn btn-warning' to={`/actualizar/${coach.id}`}>Editar</Link>
